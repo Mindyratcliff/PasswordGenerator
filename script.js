@@ -15,6 +15,13 @@ function generatePassword() {
   var passwordLength = prompt(
     "How many characters do you want your password to be?"
   );
+
+  passwordLength = parseInt(passwordLength);
+
+  if (isNaN(passwordLength)) {
+    alert("Your password length must be a numerical value.")
+  }
+  else{
   var confirmUppercase = confirm("Do you want uppercase letters?");
   var confirmLowercase = confirm("Do you want lowercase letters?");
   var confirmNumbers = confirm(
@@ -27,7 +34,7 @@ function generatePassword() {
   //Convert prompt answer to Integers
   //Think about this
 
-  passwordLength = parseInt(passwordLength);
+ 
 
   
     //Provide possible characters for password
@@ -151,6 +158,7 @@ function generatePassword() {
   //Return the generated password to the function writePassword
 
   return generatedPassword;
+}
 }
 
 // Add event listener to generate button
