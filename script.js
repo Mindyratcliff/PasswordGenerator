@@ -9,6 +9,8 @@ function writePassword() {
   passwordText.value = password;
 }
 
+//Create function to generate a password
+
 function generatePassword() {
   // Ask the user for information about the desired password
 
@@ -16,12 +18,17 @@ function generatePassword() {
     "How many characters do you want your password to be?"
   );
 
+  //Parse out numberical value
+
   passwordLength = parseInt(passwordLength);
+
+  //Provide conditions for possible NaN entries vs numerical entries
 
   if (isNaN(passwordLength)) {
     alert("Your password length must be a numerical value.")
   }
   else{
+    //Accept user criteria for password
   var confirmUppercase = confirm("Do you want uppercase letters?");
   var confirmLowercase = confirm("Do you want lowercase letters?");
   var confirmNumbers = confirm(
@@ -30,11 +37,6 @@ function generatePassword() {
   var confirmSpecial = confirm(
     "Do you want to include special characters in your password?"
   );
-
-  //Convert prompt answer to Integers
-  //Think about this
-
- 
 
   
     //Provide possible characters for password
@@ -100,7 +102,7 @@ function generatePassword() {
       ["!", "@", "#", "$", "%", "^", "&", "*"],
     ];
 
-  //Create a function to find random characters from the characters
+  //Create a function to find random characters from the possible characters
 
   function randomCharacters(possibleChar) {
     var generatedPassword = "";
@@ -112,7 +114,7 @@ function generatePassword() {
     return generatedPassword;
   }
 
-  //
+  //User does not confirm any criteria
 
   if (
     confirmUppercase === false &&
@@ -123,35 +125,39 @@ function generatePassword() {
     alert("You need to pick something to make a password!");
   }
 
+  //Create an empty array to accept characters from user selections
+
   var createsPass = [];
 
   //If user wants uppercase letters
   if (confirmUppercase === true) {
-    //Loop through uppercase letters only
+    //Concat uppercase letters within array
 
     createsPass = createsPass.concat(characters[0]);
   }
 
   //If user wants lowercase letters
   if (confirmLowercase === true) {
-    //Loop through lowercase letters only
+    //Concat lowercase letters within array
 
     createsPass = createsPass.concat(characters[1]);
   }
 
   //If user wants numbers
   if (confirmNumbers === true) {
-    //Loop through numbers list
+    //Concat numbers within array
 
     createsPass = createsPass.concat(characters[2]);
   }
 
   //If user wants specials
   if (confirmSpecial === true) {
-    //Loop through special characters
+    //Concat special characters within array
 
     createsPass = createsPass.concat(characters[3]);
   }
+
+  //Run random character functions to mix up gathered array
 
   generatedPassword = randomCharacters(createsPass);
 
