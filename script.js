@@ -11,7 +11,7 @@ function writePassword() {
 
 function generatePassword() {
   // Ask the user for information about the desired password
-  var generatedPassword = "";
+ 
   var passwordLength = prompt(
     "How many characters do you want your password to be?"
   );
@@ -25,89 +25,77 @@ function generatePassword() {
   );
 
   //Convert prompt answer to Integers
+  //Think about this
 
   passwordLength = parseInt(passwordLength);
+
+  if (isNaN(passwordLength))
 
   //Provide possible characters for password
 
   var characters = {
-    lowercase: "abcdefghijklmnopqrstuvwxyz",
-    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    numbers: "123456789",
-    specials: "!@#$%^&*",
-    all: function () {
-      return this.lowercase + this.uppercase + this.numbers + this.specials;
-    },
+    lowercase: [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z],
+    uppercase: [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z],
+    numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    specials: ["!", "@", "#", "$", "%", "^", "&", "*"]
+    
   };
 
-  //Create a function to find random characters from the characters objects
+  //Create a function to find random characters from the characters 
 
-  function randomCharacters(possibleChar) {
+  function randomCharacters(possibleChar, generatedPassword) {
     for (let i = 0; i < passwordLength; i++) {
       generatedPassword =
         generatedPassword +
         possibleChar[Math.floor(Math.random() * possibleChar.length)];
     }
+    return possibleChar;
   }
 
-  //Confirm the prompt answer is between 8 and 128, and confirm user asks for password criteria.
+  //
 
-  if (passwordLength >= 8 && passwordLength <= 128) {
-    if (
-      confirmUppercase === true &&
-      confirmLowercase === true &&
-      confirmNumbers === true &&
-      confirmSpecial === true
+  if (confirmUppercase === false &&
+      confirmLowercase === false &&
+      confirmNumbers === false &&
+      confirmSpecial === false
     ) {
-      // Loop through all possible letters, numbers, and special characters
+      //
 
-      randomCharacters(characters.all());
+      alert("You need to pick something to make a password!");
     }
 
     //If user wants uppercase letters
-    else if (confirmUppercase === true) {
+    if (confirmUppercase === true) {
       //Loop through uppercase letters only
 
-      var ups = randomCharacters(characters.uppercase);
+      return possibleChar += randomCharacters(characters.uppercase);
     }
 
     //If user wants lowercase letters
-    else if (confirmLowercase === true) {
+    if (confirmLowercase === true) {
       //Loop through lowercase letters only
 
-      var lows = randomCharacters(characters.lowercase);
+      return possibleChar += randomCharacters(characters.lowercase);
     }
 
     //If user wants numbers
-    else if (confirmNumbers === true) {
+    if (confirmNumbers === true) {
       //Loop through numbers list
 
-      var nums = randomCharacters(characters.numbers);
+      return possibleChar += randomCharacters(characters.numbers);
     }
 
     //If user wants specials
-    else if (confirmSpecial === true) {
+    if (confirmSpecial === true) {
       //Loop through special characters
 
-      var spec = randomCharacters(characters.specials);
+      return possibleChar += randomCharacters(characters.specials);
     }
-    var concPassword 
     
-    if (ups === NaN || lows === NaN || nums === NaN || spec === NaN) {
-        
+    for (var i = possibleChar.length; i < passwordLength; i++) {
+
+      
     }
-
-    (ups + lows + nums + spec); 
-        for (var j = 0; j < concPassword; j++) {
-            concPassword[Math.floor(Math.random) * concPassword.length]
-        };
-        generatedPassword = generatedPassword + concPassword;
-  }
-
-  //Return an alert that asks the user to meet password criteria
-  else {
-    alert("Your password must be between 8 and 128 characters.");
-  }
 
   //Return the generated password to the function writePassword
 
