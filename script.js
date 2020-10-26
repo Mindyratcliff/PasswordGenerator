@@ -11,7 +11,7 @@ function writePassword() {
 
 function generatePassword() {
   // Ask the user for information about the desired password
- 
+
   var passwordLength = prompt(
     "How many characters do you want your password to be?"
   );
@@ -29,22 +29,74 @@ function generatePassword() {
 
   passwordLength = parseInt(passwordLength);
 
-  if (isNaN(passwordLength))
+  
+    //Provide possible characters for password
 
-  //Provide possible characters for password
+    var characters = [
+      [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+      ],
+      [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+      ],
+      ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+      ["!", "@", "#", "$", "%", "^", "&", "*"],
+    ];
 
-  var characters = {
-    lowercase: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"],
-    uppercase: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
-    numbers: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    specials: ["!", "@", "#", "$", "%", "^", "&", "*"]
-    
-  };
-
-  //Create a function to find random characters from the characters 
+  //Create a function to find random characters from the characters
 
   function randomCharacters(possibleChar) {
-    var generatedPassword;
+    var generatedPassword = "";
     for (let i = 0; i < passwordLength; i++) {
       generatedPassword =
         generatedPassword +
@@ -55,49 +107,46 @@ function generatePassword() {
 
   //
 
-  if (confirmUppercase === false &&
-      confirmLowercase === false &&
-      confirmNumbers === false &&
-      confirmSpecial === false
-    ) {
-      
+  if (
+    confirmUppercase === false &&
+    confirmLowercase === false &&
+    confirmNumbers === false &&
+    confirmSpecial === false
+  ) {
+    alert("You need to pick something to make a password!");
+  }
 
-      alert("You need to pick something to make a password!");
-    }
+  var createsPass = [];
 
-    var createsPass = [];
+  //If user wants uppercase letters
+  if (confirmUppercase === true) {
+    //Loop through uppercase letters only
 
-    //If user wants uppercase letters
-    if (confirmUppercase === true) {
-      //Loop through uppercase letters only
+    createsPass = createsPass.concat(characters[0]);
+  }
 
-      createsPass += createsPass.concat(characters.uppercase);
-    }
+  //If user wants lowercase letters
+  if (confirmLowercase === true) {
+    //Loop through lowercase letters only
 
-    //If user wants lowercase letters
-    if (confirmLowercase === true) {
-      //Loop through lowercase letters only
+    createsPass = createsPass.concat(characters[1]);
+  }
 
-      createsPass += createsPass.concat(characters.lowercase);
-    }
+  //If user wants numbers
+  if (confirmNumbers === true) {
+    //Loop through numbers list
 
-    //If user wants numbers
-    if (confirmNumbers === true) {
-      //Loop through numbers list
+    createsPass = createsPass.concat(characters[2]);
+  }
 
-      createsPass += createsPass.concat(characters.numbers);
-    }
+  //If user wants specials
+  if (confirmSpecial === true) {
+    //Loop through special characters
 
-    //If user wants specials
-    if (confirmSpecial === true) {
-      //Loop through special characters
+    createsPass = createsPass.concat(characters[3]);
+  }
 
-      createsPass += createsPass.concat(characters.specials);
-    }
-    
-    generatedPassword = randomCharacters(createsPass);
-
-  
+  generatedPassword = randomCharacters(createsPass);
 
   //Return the generated password to the function writePassword
 
