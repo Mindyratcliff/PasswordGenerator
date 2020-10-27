@@ -18,7 +18,7 @@ function generatePassword() {
     "How many characters do you want your password to be?"
   );
 
-  //Parse out numberical value
+  //Parse out numerical value
 
   passwordLength = parseInt(passwordLength);
 
