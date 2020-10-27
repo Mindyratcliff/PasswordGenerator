@@ -24,9 +24,14 @@ function generatePassword() {
 
   //Provide conditions for possible NaN entries vs numerical entries
 
+  if(passwordLength<128 && passwordLength<8){
+    alert("Your password must be between 8-128 characters.");
+  }
+
   if (isNaN(passwordLength)) {
     alert("Your password length must be a numerical value.")
   }
+
   else{
     //Accept user criteria for password
   var confirmUppercase = confirm("Do you want uppercase letters?");
@@ -165,7 +170,9 @@ function generatePassword() {
 
   return generatedPassword;
 }
-}
+  }
+
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
